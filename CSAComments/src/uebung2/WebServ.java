@@ -25,6 +25,7 @@ import java.net.Socket;
  * schließt der Server den Socket. Antworten werden mit
  * HTTP/1.0-Header gesendet.
  */
+//jede klasse die von runnable erbt braucht klasse run
 public class WebServ implements Runnable{
 	
 	
@@ -34,11 +35,14 @@ public class WebServ implements Runnable{
 	
   private void run(int port){
     try {
+    	
       System.out.println("Listening to port " + port);
       int calls = 0;
+      //Verbindungen annehmen.
       ServerSocket httpd = new ServerSocket(port);
       while (true) {
         Socket socket = httpd.accept();
+        //java klasse, nimmt neuen thread um paralleles arbeiten zu ermöglichen
         (new BrowserClientThread(++calls, socket)).start();
       }
     } catch (IOException e) {

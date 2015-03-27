@@ -24,9 +24,12 @@ public class Aufgabe3 {
 		if(address == null){
 			return "No URL entered";
 		}
+		//Vorgefertigte Klasse
 		NTPUDPClient ntpClient = new NTPUDPClient();
 		try {
+			//Beziehe TimeInfo vom Server
 			TimeInfo timeStamp = ntpClient.getTime(address);
+			//Wandel Serverdaten in Zeitformat um. (NetworkTimeProtocol Vers 3)
 			NtpV3Packet nachricht = timeStamp.getMessage();
 			
 			out.write("Stratum: " + nachricht.getModeName());
@@ -42,6 +45,7 @@ public class Aufgabe3 {
 			
 			out.write(nachricht.toString());
 			
+			//Wandel Zeitformat in neues Zeitformat um...Chris halt
 			Date uebergebeneZeit = new Date(nachricht.getTransmitTimeStamp().getTime());
 			//TODO gibt nnichts aus
 			return "Die Zeit vom Server " + address.getHostName() + " : "  + uebergebeneZeit;

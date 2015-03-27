@@ -21,17 +21,24 @@ public class Aufgabe2 {
 		int port = 13;
 		String result = "";
 		try {
+			//Socket stellt Verbindung vom Client zum Server dar. 
 			Socket sock = new Socket(address, port);
 			
+			// Wenn Verbindung positiv , und Daten reinkommen, dann über dieses Objekt (input) ansprechen
 			InputStream input = sock.getInputStream();
+			// Einkommende Daten in Byte Array speichern, HIER vorbereitung des Arrays
 			byte[] streamedBytes = new byte[100];
 			int length = 0;
+			//Rückgabe von -1 bei keinen Daten. Einlesen der Daten vom Server. Daten in StreamedBytesArray gespeichert.
 			while ((length = input.read(streamedBytes)) != -1) {
 			
-				
+				// Byte Array später in andere Formate zwischenspeichern
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				// ps = drucker für zeichenketten für baos.
 				PrintStream ps = new PrintStream(baos);
+				//Schreiben von streamedBytes Daten in ps
 				ps.write(streamedBytes, 0, length);
+				// Schreiben der zurückgegebenen Daten in String als Text
 				result = baos.toString();
 				
 				System.out.write(streamedBytes, 0, length);

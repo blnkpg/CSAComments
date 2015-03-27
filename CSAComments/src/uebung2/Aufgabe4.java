@@ -16,18 +16,23 @@ public class Aufgabe4 {
 	 * @param address
 	 * @return
 	 */
+	//Gibts die Index.html beim Server?
 	public static String run(InetAddress address ) {
 		int port = 80;
 		String result ="";
 		
 		try {
+			//Socket stellt Verbindung vom Client zum Server dar. 
 			Socket sock = new Socket(address, port);	
+			//Jetzt Anfrage an Server. "Hey digga ich sprech dich über http protocol an und will folgende datei..."
 			OutputStream out = sock.getOutputStream();
 			InputStream in = sock.getInputStream();
 			String standardDatei = "/index.html";
 			String befehl = "GET " + standardDatei + " HTTP/1.0" + "\r\n\r\n";
 			//"\r\n\r\n" sind zeilenumbrüche...
+			//outputstream übermittel String befehl an Server
 			out.write(befehl.getBytes());
+			
 			
 			int length;
 			byte[] streamedBytes = new byte[100];

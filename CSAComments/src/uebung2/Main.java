@@ -13,7 +13,9 @@ public class Main {
 	public static void main(String[] args) {
 		int auswahl = 2;
 		
+		//Ermöglicht Java mehrere Prozesse(Threads) parallel laufen zu lassen
 		ExecutorService threadPool = Executors.newFixedThreadPool(2);
+				//Threads TelnetServer und WebServer laufen parallel
 				threadPool.submit(new TelnetServer());
 				threadPool.submit(new WebServ());
 			System.out.println("Server gestartet");	

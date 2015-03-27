@@ -8,6 +8,7 @@ public class Menu {
 	private PrintWriter out = null;
 	private BufferedReader in = null;
 	
+	//speichere ein und ausgabe aus dem Client handler zwischen
 	public Menu(PrintWriter out , BufferedReader in){
 		this.out = out;
 		this.in = in;
